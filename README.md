@@ -2,7 +2,7 @@
 
 This Jekyll plugin is an extension of [jekyll-commonmark-ghpages] that adds one extra feature: the ability to use tabbed code blocks. The tabbed code blocks also have theme support and support copying code blocks. See [Testing Code Tabs] for a demo!
 
-> Please note that this plugin will not work out of the box with GitHub Pages with only officially supports [these plugins]. I made a guide last year about getting around this [using GitHub Actions], but it may be a bit dated even if the idea is still the same. [My site] itself is generated using GitHub Actions so it can be done for sure with the right configuration.
+> Please note that this plugin will not work out of the box with GitHub Pages which only officially supports [these plugins]. I made a guide last year about getting around this [using GitHub Actions], but it may be a bit dated even if the idea is still the same. [My site] itself is generated using GitHub Actions so it can be done for sure with the right configuration.
 
 ## Installation
 
