@@ -7,14 +7,16 @@ This Jekyll plugin is an extension of [jekyll-commonmark-ghpages] that adds one 
 ## Installation
 
 Add the jdvp-codetabs-commonmark gem inside of your `Gemfile`:
-```
+
+```ruby
 group :jekyll_plugins do
   gem 'jdvp-codetabs-commonmark'
 end
 ```
 
 Update `_config.yml` to use this plugin as the markdown converter:
-```
+
+```yaml
 markdown: JdvpCodeTabsCommonMark
 ``` 
 
@@ -23,7 +25,7 @@ extensions and options for the markdown conversion as seen in that project's REA
 
 If necessary, run bundle install to install the missing gem:
 
-```
+```sh
 bundle install
 ```
 
