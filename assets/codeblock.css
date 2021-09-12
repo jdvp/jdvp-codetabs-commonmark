@@ -1,124 +1,823 @@
-pre, code {
-   font-family: Roboto Mono,monospace;
+html,
+html[data-code-block-theme="light"] {
+  --code-block-background-color: #F9F9F9;
+  --code-block-default-text-color: #555;
+  --code-block-action-button-color: #666666;
+  --code-block-bp-color: #366;
+  --code-block-c-color: #999;
+  --code-block-c1-color: #999;
+  --code-block-cd-color: #555;
+  --code-block-ch-color: #555;
+  --code-block-cm-color: #09f;
+  --code-block-cp-color: #099;
+  --code-block-cpf-color: #555;
+  --code-block-cs-color: #999;
+  --code-block-dl-color: #555;
+  --code-block-err-color: #a00;
+  --code-block-err-background-color: #faa;
+  --code-block-gd-color: #555;
+  --code-block-gd-background-color: #fcc;
+  --code-block-gh-color: #030;
+  --code-block-gi-color: #555;
+  --code-block-gi-background-color: #cfc;
+  --code-block-gi-border-color: #0c0;
+  --code-block-go-color: #aaa;
+  --code-block-gp-color: #009;
+  --code-block-gr-color: #f00;
+  --code-block-gt-color: #9c6;
+  --code-block-gu-color: #030;
+  --code-block-il-color: #f60;
+  --code-block-k-color: #069;
+  --code-block-kc-color: #069;
+  --code-block-kd-color: #069;
+  --code-block-kn-color: #069;
+  --code-block-kp-color: #069;
+  --code-block-kr-color: #069;
+  --code-block-kt-color: #078;
+  --code-block-m-color: #f60;
+  --code-block-mb-color: #f60;
+  --code-block-mf-color: #f60;
+  --code-block-mh-color: #f60;
+  --code-block-mi-color: #f60;
+  --code-block-mo-color: #f60;
+  --code-block-mx-color: #f60;
+  --code-block-na-color: #4f9fcf;
+  --code-block-nb-color: #366;
+  --code-block-nc-color: #0a8;
+  --code-block-nd-color: #99f;
+  --code-block-ne-color: #c00;
+  --code-block-nf-color: #c0f;
+  --code-block-ni-color: #999;
+  --code-block-nl-color: #99f;
+  --code-block-nn-color: #0cf;
+  --code-block-no-color: #360;
+  --code-block-nt-color: #2f6f9f;
+  --code-block-nv-color: #033;
+  --code-block-o-color: #555;
+  --code-block-ow-color: #000;
+  --code-block-p-color: #555;
+  --code-block-pi-color: #555;
+  --code-block-s-color: #d44950;
+  --code-block-s1-color: #c30;
+  --code-block-s2-color: #c30;
+  --code-block-sa-color: #555;
+  --code-block-sb-color: #c30;
+  --code-block-sc-color: #c30;
+  --code-block-sd-color: #c30;
+  --code-block-se-color: #c30;
+  --code-block-sh-color: #c30;
+  --code-block-si-color: #a00;
+  --code-block-sr-color: #3aa;
+  --code-block-ss-color: #fc3;
+  --code-block-sx-color: #c30;
+  --code-block-vc-color: #033;
+  --code-block-vg-color: #033;
+  --code-block-vi-color: #033;
+  --code-block-w-color: #bbb;
 }
- code {
-   background-color: #f9f9f9;
-   border-radius: 3px;
-   color: #bf616a;
-   font-size: 85%;
-   padding: 0.25em 0.5em;
+
+html[data-code-block-theme="dark"] {
+  --code-block-background-color: #272822;
+  --code-block-default-text-color: #f8f8f2;
+  --code-block-action-button-color: #a8a8a8;
+  --code-block-bp-color: #f8f8f2;
+  --code-block-c-color: #75715e;
+  --code-block-c1-color: #75715e;
+  --code-block-cd-color: #75715e;
+  --code-block-ch-color: #75715e;
+  --code-block-cm-color: #75715e;
+  --code-block-cp-color: #f4bf75;
+  --code-block-cpf-color: #75715e;
+  --code-block-cs-color: #75715e;
+  --code-block-dl-color: #a6e22e;
+  --code-block-err-color: #272822;
+  --code-block-err-background-color: #f92672;
+  --code-block-gd-color: #f92672;
+  --code-block-gd-background-color: transparent;
+  --code-block-gh-background-color: #272822;
+  --code-block-gh-color: #66d9ef;
+  --code-block-gh-font-weight: bold;
+  --code-block-gi-color: #a6e22e;
+  --code-block-gi-background-color: transparent;
+  --code-block-gi-border-color: transparent;
+  --code-block-go-color: #f8f8f2;
+  --code-block-gp-color: #f8f8f2;
+  --code-block-gr-color: #f8f8f2;
+  --code-block-gt-color: #f8f8f2;
+  --code-block-gu-color: #f8f8f2;
+  --code-block-il-color: #a6e22e;
+  --code-block-k-color: #ae81ff;
+  --code-block-kc-color: #fd971f;
+  --code-block-kd-color: #fd971f;
+  --code-block-kn-color: #ae81ff;
+  --code-block-kp-color: #ae81ff;
+  --code-block-kr-color: #ae81ff;
+  --code-block-kt-color: #fd971f;
+  --code-block-kv-color: #ae81ff;
+  --code-block-m-color: #a6e22e;
+  --code-block-mb-color: #a6e22e;
+  --code-block-mf-color: #a6e22e;
+  --code-block-mh-color: #a6e22e;
+  --code-block-mi-color: #a6e22e;
+  --code-block-mo-color: #a6e22e;
+  --code-block-mx-color: #a6e22e;
+  --code-block-na-color: #66d9ef;
+  --code-block-nb-color: #f8f8f2;
+  --code-block-nc-color: #f4bf75;
+  --code-block-nd-color: #f8f8f2;
+  --code-block-ne-color: #f8f8f2;
+  --code-block-nf-color: #f8f8f2;
+  --code-block-ni-color: #f8f8f2;
+  --code-block-nl-color: #f8f8f2;
+  --code-block-nn-color: #f4bf75;
+  --code-block-no-color: #f4bf75;
+  --code-block-nt-color: #f4bf75;
+  --code-block-nv-color: #f8f8f2;
+  --code-block-o-color: #f8f8f2;
+  --code-block-ow-color: #f8f8f2;
+  --code-block-p-color: #f8f8f2;
+  --code-block-pi-color: #f8f8f2;
+  --code-block-s-color: #a6e22e;
+  --code-block-s1-color: #a6e22e;
+  --code-block-s2-color: #a6e22e;
+  --code-block-sa-color: #ae81ff;
+  --code-block-sb-color: #a6e22e;
+  --code-block-sc-color: #a6e22e;
+  --code-block-sd-color: #a6e22e;
+  --code-block-se-color: #cc6633;
+  --code-block-sh-color: #a6e22e;
+  --code-block-si-color: #cc6633;
+  --code-block-sr-color: #a1efe4;
+  --code-block-ss-color: #a6e22e;
+  --code-block-sx-color: #a6e22e;
+  --code-block-vc-color: #f8f8f2;
+  --code-block-vg-color: #f8f8f2;
+  --code-block-vi-color: #f8f8f2;
+  --code-block-w-color: #f8f8f2;
 }
- pre {
-   margin: 0 0 1rem;
+
+@media (prefers-color-scheme: dark) {
+  html,
+  html[data-code-block-theme="dark"] {
+    --code-block-background-color: #272822;
+    --code-block-default-text-color: #f8f8f2;
+    --code-block-action-button-color: #a8a8a8;
+    --code-block-bp-color: #f8f8f2;
+    --code-block-c-color: #75715e;
+    --code-block-c1-color: #75715e;
+    --code-block-cd-color: #75715e;
+    --code-block-ch-color: #75715e;
+    --code-block-cm-color: #75715e;
+    --code-block-cp-color: #f4bf75;
+    --code-block-cpf-color: #75715e;
+    --code-block-cs-color: #75715e;
+    --code-block-dl-color: #a6e22e;
+    --code-block-err-color: #272822;
+    --code-block-err-background-color: #f92672;
+    --code-block-gd-color: #f92672;
+    --code-block-gd-background-color: transparent;
+    --code-block-gh-background-color: #272822;
+    --code-block-gh-color: #66d9ef;
+    --code-block-gh-font-weight: bold;
+    --code-block-gi-color: #a6e22e;
+    --code-block-gi-background-color: transparent;
+    --code-block-gi-border-color: transparent;
+    --code-block-go-color: #f8f8f2;
+    --code-block-gp-color: #f8f8f2;
+    --code-block-gr-color: #f8f8f2;
+    --code-block-gt-color: #f8f8f2;
+    --code-block-gu-color: #f8f8f2;
+    --code-block-il-color: #a6e22e;
+    --code-block-k-color: #ae81ff;
+    --code-block-kc-color: #fd971f;
+    --code-block-kd-color: #fd971f;
+    --code-block-kn-color: #ae81ff;
+    --code-block-kp-color: #ae81ff;
+    --code-block-kr-color: #ae81ff;
+    --code-block-kt-color: #fd971f;
+    --code-block-kv-color: #ae81ff;
+    --code-block-m-color: #a6e22e;
+    --code-block-mb-color: #a6e22e;
+    --code-block-mf-color: #a6e22e;
+    --code-block-mh-color: #a6e22e;
+    --code-block-mi-color: #a6e22e;
+    --code-block-mo-color: #a6e22e;
+    --code-block-mx-color: #a6e22e;
+    --code-block-na-color: #66d9ef;
+    --code-block-nb-color: #f8f8f2;
+    --code-block-nc-color: #f4bf75;
+    --code-block-nd-color: #f8f8f2;
+    --code-block-ne-color: #f8f8f2;
+    --code-block-nf-color: #f8f8f2;
+    --code-block-ni-color: #f8f8f2;
+    --code-block-nl-color: #f8f8f2;
+    --code-block-nn-color: #f4bf75;
+    --code-block-no-color: #f4bf75;
+    --code-block-nt-color: #f4bf75;
+    --code-block-nv-color: #f8f8f2;
+    --code-block-o-color: #f8f8f2;
+    --code-block-ow-color: #f8f8f2;
+    --code-block-p-color: #f8f8f2;
+    --code-block-pi-color: #f8f8f2;
+    --code-block-s-color: #a6e22e;
+    --code-block-s1-color: #a6e22e;
+    --code-block-s2-color: #a6e22e;
+    --code-block-sa-color: #ae81ff;
+    --code-block-sb-color: #a6e22e;
+    --code-block-sc-color: #a6e22e;
+    --code-block-sd-color: #a6e22e;
+    --code-block-se-color: #cc6633;
+    --code-block-sh-color: #a6e22e;
+    --code-block-si-color: #cc6633;
+    --code-block-sr-color: #a1efe4;
+    --code-block-ss-color: #a6e22e;
+    --code-block-sx-color: #a6e22e;
+    --code-block-vc-color: #f8f8f2;
+    --code-block-vg-color: #f8f8f2;
+    --code-block-vi-color: #f8f8f2;
+    --code-block-w-color: #f8f8f2;
+  }
+  html[data-code-block-theme="light"] {
+    --code-block-background-color: #F9F9F9;
+    --code-block-default-text-color: #555;
+    --code-block-action-button-color: #666666;
+    --code-block-bp-color: #366;
+    --code-block-c-color: #999;
+    --code-block-c1-color: #999;
+    --code-block-cd-color: #555;
+    --code-block-ch-color: #555;
+    --code-block-cm-color: #09f;
+    --code-block-cp-color: #099;
+    --code-block-cpf-color: #555;
+    --code-block-cs-color: #999;
+    --code-block-dl-color: #555;
+    --code-block-err-color: #a00;
+    --code-block-err-background-color: #faa;
+    --code-block-gd-color: #555;
+    --code-block-gd-background-color: #fcc;
+    --code-block-gh-color: #030;
+    --code-block-gi-color: #555;
+    --code-block-gi-background-color: #cfc;
+    --code-block-gi-border-color: #0c0;
+    --code-block-go-color: #aaa;
+    --code-block-gp-color: #009;
+    --code-block-gr-color: #f00;
+    --code-block-gt-color: #9c6;
+    --code-block-gu-color: #030;
+    --code-block-il-color: #f60;
+    --code-block-k-color: #069;
+    --code-block-kc-color: #069;
+    --code-block-kd-color: #069;
+    --code-block-kn-color: #069;
+    --code-block-kp-color: #069;
+    --code-block-kr-color: #069;
+    --code-block-kt-color: #078;
+    --code-block-m-color: #f60;
+    --code-block-mb-color: #f60;
+    --code-block-mf-color: #f60;
+    --code-block-mh-color: #f60;
+    --code-block-mi-color: #f60;
+    --code-block-mo-color: #f60;
+    --code-block-mx-color: #f60;
+    --code-block-na-color: #4f9fcf;
+    --code-block-nb-color: #366;
+    --code-block-nc-color: #0a8;
+    --code-block-nd-color: #99f;
+    --code-block-ne-color: #c00;
+    --code-block-nf-color: #c0f;
+    --code-block-ni-color: #999;
+    --code-block-nl-color: #99f;
+    --code-block-nn-color: #0cf;
+    --code-block-no-color: #360;
+    --code-block-nt-color: #2f6f9f;
+    --code-block-nv-color: #033;
+    --code-block-o-color: #555;
+    --code-block-ow-color: #000;
+    --code-block-p-color: #555;
+    --code-block-pi-color: #555;
+    --code-block-s-color: #d44950;
+    --code-block-s1-color: #c30;
+    --code-block-s2-color: #c30;
+    --code-block-sa-color: #555;
+    --code-block-sb-color: #c30;
+    --code-block-sc-color: #c30;
+    --code-block-sd-color: #c30;
+    --code-block-se-color: #c30;
+    --code-block-sh-color: #c30;
+    --code-block-si-color: #a00;
+    --code-block-sr-color: #3aa;
+    --code-block-ss-color: #fc3;
+    --code-block-sx-color: #c30;
+    --code-block-vc-color: #033;
+    --code-block-vg-color: #033;
+    --code-block-vi-color: #033;
+    --code-block-w-color: #bbb;
+  }
 }
- pre code {
-   background-color: transparent;
-   color: inherit;
-   font-size: 90%;
-   padding: 0;
-   white-space: pre;
+
+.highlight {
+  color: var(--code-block-default-text-color);
 }
- .highlight {
-   background-color: #f9f9f9;
-   border-radius: 8px;
-   line-height: 1.4;
-   margin: 0 0 1rem;
-   padding: 1rem;
-   border: 1px solid #e8eaed;
+
+.highlight .bp {
+  color: var(--code-block-bp-color);
 }
- .highlight pre {
-   margin-bottom: 0;
-   overflow-x: auto;
+
+.highlight .c {
+  color: var(--code-block-c-color);
 }
- .highlight .lineno {
-   color: #aaa;
-   display: inline-block;
-   padding: 0 0.75rem 0 0.25rem;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-   user-select: none;
+
+.highlight .c1 {
+  color: var(--code-block-c1-color);
 }
- .highlight .highlight {
-   border: none;
-   margin: 0;
+
+.highlight .cd {
+  color: var(--code-block-cd-color);
 }
- .code-tab-container {
-   display: flex;
-   flex-wrap: wrap;
-   list-style: none;
-   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-   font-size: 20px;
-   font-weight: 400;
-   -webkit-text-size-adjust: 100%;
-   background: #fff;
-   border-radius: 8px 8px 0px 0px;
-   border: 1px solid #e8eaed;
-   margin: 0;
-   padding: 0;
-   list-style-type: none;
+
+.highlight .ch {
+  color: var(--code-block-ch-color);
 }
- .code-tab-container a:hover, .code-tab-container a:visited, .code-tab-container a:link, .code-tab-container a:active {
-   text-decoration: none !important;
+
+.highlight .cm {
+  color: var(--code-block-cm-color);
 }
- .code-tab-container a:hover {
-   color: #000;
-   border-color: #bcbcbc;
+
+.highlight .cp {
+  color: var(--code-block-cp-color);
 }
- .code-tab-container > * {
-   flex: none;
-   padding-left: 20px;
-   position: relative;
+
+.highlight .cpf {
+  color: var(--code-block-cpf-color);
 }
- .code-tab-container a {
-   display: flex;
-   align-items: center;
-   column-gap: 0.25em;
-   justify-content: center;
-   padding: 10px;
-   color: #5f6368;
-   border-radius: 3px 3px 0px 0px;
-   border-bottom: 3px solid transparent;
-   font-size: 14px;
-   transition: color 0.1s ease-in-out;
-   text-decoration: none;
-   cursor: pointer;
+
+.highlight .cs {
+  color: var(--code-block-cs-color);
 }
- .code-tab-container .active-tab > a {
-   color: #1769e0;
-   border-color: #1769e0;
+
+.highlight .dl {
+  color: var(--code-block-dl-color, --code-block-default-text-color);
 }
- .code-tab-switcher {
-   margin: 0;
-   padding: 0;
-   list-style: none;
-   border-radius: 0px 0px 8px 8px;
+
+.highlight .err {
+  color: var(--code-block-err-color);
+  background-color: var(--code-block-err-background-color);
 }
- .code-tab-switcher > :not(.active-tab) {
-   display: none;
+
+.highlight .gd {
+  color: var(--code-block-gd-color);
+  background-color: var(--code-block-gd-background-color);
 }
- .code-tab-switcher > * > :last-child {
-   margin-bottom: 0;
+
+.highlight .ge {
+  font-style: italic;
 }
- .code-tab-switcher .highlight {
-   border-radius: 0px 0px 8px 8px;
-   border-top: 0px solid;
+
+.highlight .gh {
+  font-weight: var(--code-block-gh-font-weight, normal);
+  background-color: var(--code-block-gh-background-color, transparent);
+  color: var(--code-block-gh-color);
 }
+
+.highlight .gi {
+  color: var(--code-block-gi-color);
+  background-color: var(--code-block-gi-background-color);
+  border: 1px solid var(--code-block-gi-border-color);
+}
+
+.highlight .go {
+  color: var(--code-block-go-color);
+}
+
+.highlight .gp {
+  color: var(--code-block-gp-color);
+}
+
+.highlight .gr {
+  color: var(--code-block-gr-color);
+}
+
+.highlight .gs {}
+
+.highlight .gt {
+  color: var(--code-block-gt-color);
+}
+
+.highlight .gu {
+  color: var(--code-block-gu-color);
+}
+
+.highlight .hll {
+  background-color: var(--code-block-background-color);
+}
+
+.highlight .il {
+  color: var(--code-block-il-color);
+}
+
+.highlight .k {
+  color: var(--code-block-k-color);
+}
+
+.highlight .kc {
+  color: var(--code-block-kc-color);
+}
+
+.highlight .kd {
+  color: var(--code-block-kd-color);
+}
+
+.highlight .kn {
+  color: var(--code-block-kn-color);
+}
+
+.highlight .kp {
+  color: var(--code-block-kp-color);
+}
+
+.highlight .kr {
+  color: var(--code-block-kr-color);
+}
+
+.highlight .kt {
+  color: var(--code-block-kt-color);
+}
+
+.highlight .kv {
+  color: var(--code-block-kv-color, --code-block-default-text-color);
+}
+
+.highlight .m {
+  color: var(--code-block-m-color);
+}
+
+.highlight .mb {
+  color: var(--code-block-mb-color);
+}
+
+.highlight .mf {
+  color: var(--code-block-mf-color);
+}
+
+.highlight .mh {
+  color: var(--code-block-mh-color);
+}
+
+.highlight .mi {
+  color: var(--code-block-mi-color);
+}
+
+.highlight .mo {
+  color: var(--code-block-mo-color);
+}
+
+.highlight .mx {
+  color: var(--code-block-mx-color);
+}
+
+.highlight .na {
+  color: var(--code-block-na-color);
+}
+
+.highlight .nb {
+  color: var(--code-block-nb-color);
+}
+
+.highlight .nc {
+  color: var(--code-block-nc-color);
+}
+
+.highlight .nd {
+  color: var(--code-block-nd-color);
+}
+
+.highlight .ne {
+  color: var(--code-block-ne-color);
+}
+
+.highlight .nf {
+  color: var(--code-block-nf-color);
+}
+
+.highlight .ni {
+  color: var(--code-block-ni-color);
+}
+
+.highlight .nl {
+  color: var(--code-block-nl-color);
+}
+
+.highlight .nn {
+  color: var(--code-block-nn-color);
+}
+
+.highlight .no {
+  color: var(--code-block-no-color);
+}
+
+.highlight .nt {
+  color: var(--code-block-nt-color);
+}
+
+.highlight .nv {
+  color: var(--code-block-nv-color);
+}
+
+.highlight .o {
+  color: var(--code-block-o-color);
+}
+
+.highlight .ow {
+  color: var(--code-block-ow-color);
+}
+
+.highlight .p {
+  color: var(--code-block-p-color);
+}
+
+.highlight .pi {
+  color: var(--code-block-pi-color);
+}
+
+.highlight .s {
+  color: var(--code-block-s-color);
+}
+
+.highlight .sa {
+  color: var(--code-block-sa-color, --code-block-default-text-color)
+}
+
+.highlight .s1 {
+  color: var(--code-block-s1-color);
+}
+
+.highlight .s2 {
+  color: var(--code-block-s2-color);
+}
+
+.highlight .sb {
+  color: var(--code-block-sb-color);
+}
+
+.highlight .sc {
+  color: var(--code-block-sc-color);
+}
+
+.highlight .sd {
+  color: var(--code-block-sd-color);
+  font-style: italic;
+}
+
+.highlight .se {
+  color: var(--code-block-se-color);
+}
+
+.highlight .sh {
+  color: var(--code-block-sh-color);
+}
+
+.highlight .si {
+  color: var(--code-block-si-color);
+}
+
+.highlight .sr {
+  color: var(--code-block-sr-color);
+}
+
+.highlight .ss {
+  color: var(--code-block-ss-color);
+}
+
+.highlight .sx {
+  color: var(--code-block-sx-color);
+}
+
+.highlight .vc {
+  color: var(--code-block-vc-color);
+}
+
+.highlight .vg {
+  color: var(--code-block-vg-color);
+}
+
+.highlight .vi {
+  color: var(--code-block-vi-color);
+}
+
+.highlight .w {
+  color: var(--code-block-w-color);
+}
+
+pre,
+code {
+  font-family: Roboto Mono, monospace;
+}
+
+code {
+  background-color: #F9F9F9;
+  border-radius: 3px;
+  font-size: 85%;
+  padding: 0.25em 0.5em;
+}
+
+.highlight code {
+  background-color: var(--code-block-background-color);
+  padding: 0 0;
+}
+
+pre {
+  margin: 0 0 1rem;
+}
+
+pre code {
+  background-color: transparent;
+  color: inherit;
+  font-size: 90%;
+  padding: 0;
+  white-space: pre;
+}
+
+.highlight {
+  background-color: var(--code-block-background-color);
+  border-radius: 8px;
+  line-height: 1.4;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  border: 1px solid #e8eaed;
+}
+
+.highlight pre {
+  margin-bottom: 0;
+  overflow-x: auto;
+}
+
+.highlight .lineno {
+  color: #aaa;
+  display: inline-block;
+  padding: 0 0.75rem 0 0.25rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+.highlight .highlight {
+  border: none;
+  margin: 0;
+}
+
+.code-tab-container {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-size: 20px;
+  font-weight: 400;
+  -webkit-text-size-adjust: 100%;
+  background: #fff;
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid #e8eaed;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.code-tab-container a:hover,
+.code-tab-container a:visited,
+.code-tab-container a:link,
+.code-tab-container a:active {
+  text-decoration: none !important;
+}
+
+.code-tab-container a:hover {
+  color: #000;
+  border-color: #bcbcbc;
+}
+
+.code-tab-container>* {
+  flex: none;
+  padding-left: 20px;
+  position: relative;
+}
+
+.code-tab-container a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.25em;
+  justify-content: center;
+  padding: 10px;
+  color: #5f6368;
+  border-radius: 3px 3px 0px 0px;
+  border-bottom: 3px solid transparent;
+  font-size: 14px;
+  transition: color 0.1s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.code-tab-container .active-tab>a {
+  color: #1769e0;
+  border-color: #1769e0;
+}
+
+.code-tab-switcher {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-radius: 0px 0px 8px 8px;
+}
+
+.code-tab-switcher> :not(.active-tab) {
+  display: none;
+}
+
+.code-tab-switcher>*> :last-child {
+  margin-bottom: 0;
+}
+
+.code-tab-switcher .highlight {
+  border-radius: 0px 0px 8px 8px;
+  border-top: 0px solid;
+}
+
 .code_switcher_container_parent {
   position: relative;
 }
+
 .code_switcher_code_action_container {
-  position:  absolute;
+  position: absolute;
   right: 6px;
   top: 6px;
   z-index: 1;
 }
+
 .code_switcher_copy_button {
-  background: url("icon_copy.svg");
-  background-size:  18px 18px;
+  background-size: 18px 18px;
   border: none;
   font-size: 18px;
   min-width: 18px;
   min-height: 18px;
   height: 18px;
   width: 18px;
+  background-color: var(--code-block-action-button-color, #666666);;
+  -webkit-mask-image: url(icon_copy.svg);
+  mask-image: url(icon_copy.svg);
+  -webkit-mask-size: cover;
+  margin-right: 4px;
+}
+
+.code_switcher_theme_button {
+  background-size: 18px 18px;
+  border: none;
+  font-size: 18px;
+  min-width: 18px;
+  min-height: 18px;
+  height: 18px;
+  width: 18px;
+  background-color: var(--code-block-action-button-color, #666666);
+  -webkit-mask-image: url(icon_theme.svg);
+  mask-image: url(icon_theme.svg);
+  -webkit-mask-size: cover;
+}
+
+#code_copied_snackbar {
+  visibility: hidden;
+  min-width: 250px; 
+  margin-left: -125px; 
+  background-color: #333;
+  color: #fff; 
+  text-align: center; 
+  border-radius: 8px; 
+  padding: 16px;
+  position: fixed; 
+  z-index: 1; 
+  left: 50%;
+  bottom: 30px;
+  font-family: Roboto Mono, monospace;
+}
+
+#code_copied_snackbar.show {
+  visibility: visible; 
+  -webkit-animation: code_copied_snackbar_fade_in 0.5s, code_copied_snackbar_fade_out 0.5s 2.5s;
+  animation: code_copied_snackbar_fade_in 0.5s, code_copied_snackbar_fade_out 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes code_copied_snackbar_fade_in {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes code_copied_snackbar_fade_in {
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+}
+
+@-webkit-keyframes code_copied_snackbar_fade_out {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+}
+
+@keyframes code_copied_snackbar_fade_out {
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
 }

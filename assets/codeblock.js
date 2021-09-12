@@ -28,4 +28,42 @@ function selectTab(codeLangClass, tabClass, tabIndex) {
 function copyText(codeBlockClass) {
     var copiedText = document.getElementsByClassName(codeBlockClass)[0].innerText;
     navigator.clipboard.writeText(copiedText);
+    var snackbar = document.getElementById("code_copied_snackbar");
+    snackbar.classList.add("show")
+    setTimeout(function() { snackbar.classList.remove("show"); }, 3000);
 };
+
+var darkModeMatcher = window.matchMedia("(prefers-color-scheme: dark)");
+
+darkModeMatcher.addListener(matcher => {
+    localStorage.setItem("code-block-theme", "");
+    updateTheme(false);
+});
+
+function updateTheme(switchTheme) {
+    var theme = localStorage.getItem("code-block-theme");
+
+    var isCurrentThemeDark = false;
+    if (theme == "dark") {
+        isCurrentThemeDark = true;
+    } else if (theme == "light") {
+        isCurrentThemeDark = false;
+    } else if (darkModeMatcher.matches) {
+        isCurrentThemeDark = true;
+    } else {
+        isCurrentThemeDark = false;
+    }
+
+    var updatedTheme = "dark";
+    /* This is performing a logical XNOR */
+    if (isCurrentThemeDark == switchTheme) {
+        updatedTheme = "light";
+    }
+
+    document.documentElement.setAttribute("data-code-block-theme", updatedTheme);
+    localStorage.setItem("code-block-theme", updatedTheme);
+};
+
+updateTheme(false);
+
+window.onload = function() { updateTheme(false); };

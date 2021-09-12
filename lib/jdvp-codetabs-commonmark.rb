@@ -12,6 +12,7 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
         out("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>")
         out("<link rel=\"stylesheet\" href=\"assets/codeblock.css\"/>")
         out("<script src=\"assets/codeblock.js\"></script>")
+        out("<div id=\"code_copied_snackbar\">Copied!</div>")
         @added_code_block = true
       end
     end
@@ -38,9 +39,13 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
       out("<div class=\"code_switcher_container_parent #{individual_code_block_id}\">")
     end
 
+
+    out("<div class=\"code_switcher_code_action_container\">")
     if (is_copy_action_enabled(node))
-      out("<div class=\"code_switcher_code_action_container\"><button class=\"code_switcher_copy_button\" onclick=\"copyText(\'#{individual_code_block_id}\')\"></button></div>")
+      out("<button class=\"code_switcher_copy_button\" title=\"Copy\" onclick=\"copyText(\'#{individual_code_block_id}\')\"></button>")
     end
+    out("<button class=\"code_switcher_theme_button\" onclick=\"updateTheme(true)\"></button>")
+    out("</div>")
 
     super(node)
 
@@ -118,13 +123,16 @@ end
 Jekyll::Hooks.register :site, :post_write do |site|
   #Copy CSS required for code tabs
   css = File.expand_path("../../assets/codeblock.css", __FILE__)
+  FileUtils.mkdir_p("#{site.in_dest_dir("assets/")}")
   FileUtils.cp(css, "#{site.in_dest_dir("assets/codeblock.css")}")
 
   #Copy required javascript
-  css = File.expand_path("../../assets/codeblock.js", __FILE__)
-  FileUtils.cp(css, "#{site.in_dest_dir("assets/codeblock.js")}")
+  js = File.expand_path("../../assets/codeblock.js", __FILE__)
+  FileUtils.cp(js, "#{site.in_dest_dir("assets/codeblock.js")}")
 
-  #Copy icon for copy action
-  css = File.expand_path("../../assets/icon_copy.svg", __FILE__)
-  FileUtils.cp(css, "#{site.in_dest_dir("assets/icon_copy.svg")}")
+  #Copy icons for copy and theme actions
+  copy_icon = File.expand_path("../../assets/icon_copy.svg", __FILE__)
+  FileUtils.cp(copy_icon, "#{site.in_dest_dir("assets/icon_copy.svg")}")
+  theme_icon = File.expand_path("../../assets/icon_theme.svg", __FILE__)
+  FileUtils.cp(theme_icon, "#{site.in_dest_dir("assets/icon_theme.svg")}")
 end
