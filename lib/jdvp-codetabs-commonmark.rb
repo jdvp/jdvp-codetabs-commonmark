@@ -5,13 +5,13 @@ require "securerandom"
 
 class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
   @added_code_block = false
-  @added_tabbed_code_block = false
 
   def render(node)
     if node.type == :document
       if (!@added_code_block)
         out("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>")
         out("<link rel=\"stylesheet\" href=\"assets/codeblock.css\"/>")
+        out("<script src=\"assets/codeblock.js\"></script>")
         @added_code_block = true
       end
     end
@@ -27,17 +27,27 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
     is_header_item = previous_node_type != "code_block" && (next_node_type == "code_block" || using_custom_label)
     is_alone = previous_node_type != "code_block" && next_node_type != "code_block" && !using_custom_label
 
+    individual_code_block_id = SecureRandom.uuid
+
     if (is_header_item)
       create_tabbed_code_header(node)
-      out("<li class=\"active-tab #{get_code_language_switcher_class(node)}\">")
+      out("<li class=\"code_switcher_container_parent active-tab #{get_code_language_switcher_class(node)} #{individual_code_block_id}\">")
     elsif (!is_alone) 
-      out("<li class=\"#{get_code_language_switcher_class(node)}\">")
+      out("<li class=\"code_switcher_container_parent #{get_code_language_switcher_class(node)} #{individual_code_block_id}\">")
+    else 
+      out("<div class=\"code_switcher_container_parent #{individual_code_block_id}\">")
+    end
+
+    if (is_copy_action_enabled(node))
+      out("<div class=\"code_switcher_code_action_container\"><button class=\"code_switcher_copy_button\" onclick=\"copyText(\'#{individual_code_block_id}\')\"></button></div>")
     end
 
     super(node)
 
     if (!is_alone) 
       out("</li>")
+    else
+      out("</div>")
     end
 
     if (next_node_type != "code_block" && !is_alone)
@@ -46,7 +56,7 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
   end
 
   def split_lanugage_fence_info(node)
-    node&.fence_info&.split(/[\s,]/, 2)
+    node&.fence_info&.sub(" codeCopyEnabled", "")&.split(/[\s,]/, 2)
   end
 
   def get_code_language(node)
@@ -60,15 +70,14 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
   def get_code_language_switcher_class(node)
     lang = get_code_language(node)
     lang == "unknown" ? "" : "code_switcher_#{lang&.downcase}"
-   end
+  end
+
+  def is_copy_action_enabled(node)
+    node&.fence_info&.include?("codeCopyEnabled") || false
+  end
 
   def create_tabbed_code_header(node)
     uuid = SecureRandom.uuid
-
-    if (!@added_tabbed_code_block)
-      out("<script src=\"assets/codeblock.js\"></script>")
-      @added_tabbed_code_block = true
-    end
 
     out("<ul class=\"code-tab-container #{uuid}\">")
     
@@ -114,4 +123,8 @@ Jekyll::Hooks.register :site, :post_write do |site|
   #Copy required javascript
   css = File.expand_path("../../assets/codeblock.js", __FILE__)
   FileUtils.cp(css, "#{site.in_dest_dir("assets/codeblock.js")}")
+
+  #Copy icon for copy action
+  css = File.expand_path("../../assets/icon_copy.svg", __FILE__)
+  FileUtils.cp(css, "#{site.in_dest_dir("assets/icon_copy.svg")}")
 end

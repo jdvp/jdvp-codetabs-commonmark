@@ -24,3 +24,8 @@ function selectTab(codeLangClass, tabClass, tabIndex) {
         Array.prototype.slice.call(tab.children)[tabIndex].classList.add("active-tab");
     });
 };
+
+function copyText(codeBlockClass) {
+    var copiedText = document.getElementsByClassName(codeBlockClass)[0].innerText;
+    navigator.clipboard.writeText(copiedText);
+};
