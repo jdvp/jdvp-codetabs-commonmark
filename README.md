@@ -1,4 +1,6 @@
-## jdvp-codetabs-commonmark
+## jdvp-codetabs-commonmark 
+
+[![Gem Version](https://badge.fury.io/rb/jdvp-codetabs-commonmark.svg)](https://badge.fury.io/rb/jdvp-codetabs-commonmark)
 
 This Jekyll plugin is an extension of [jekyll-commonmark-ghpages] that adds one extra feature: the ability to use tabbed code blocks. The tabbed code blocks also have theme support and support copying code blocks. See [Testing Code Tabs] for a demo!
 
