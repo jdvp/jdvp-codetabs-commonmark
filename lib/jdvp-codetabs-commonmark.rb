@@ -12,8 +12,8 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
       if (!@added_assets_links)
         #Add references to the fonts, css, and js required
         out("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>")
-        out("<link rel=\"stylesheet\" href=\"/assets/codeblock.css\"/>")
-        out("<script src=\"/assets/codeblock.js\"></script>")
+        out("<link rel=\"stylesheet\" href=\"JdvpCodeTabs-baseurl/assets/codeblock.css\"/>")
+        out("<script src=\"JdvpCodeTabs-baseurl/assets/codeblock.js\"></script>")
         @added_assets_links = true
       end
     end
@@ -141,6 +141,12 @@ class Jekyll::Converters::Markdown
       ).render(doc)
       html.gsub(/<br data-jekyll-commonmark-ghpages>/, "\n")
     end
+  end
+end
+
+Jekyll::Hooks.register :posts, :post_convert do |post|
+  if post.content.include? "JdvpCodeTabs-baseurl"
+    post.content = post.content.gsub("JdvpCodeTabs-baseurl", "#{post.site.baseurl}")
   end
 end
 
