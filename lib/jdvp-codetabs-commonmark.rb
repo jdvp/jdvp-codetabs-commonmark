@@ -12,8 +12,8 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
       if (!@added_assets_links)
         #Add references to the fonts, css, and js required
         out("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>")
-        out("<link rel=\"stylesheet\" href=\"assets/codeblock.css\"/>")
-        out("<script src=\"assets/codeblock.js\"></script>")
+        out("<link rel=\"stylesheet\" href=\"/assets/codeblock.css\"/>")
+        out("<script src=\"/assets/codeblock.js\"></script>")
         @added_assets_links = true
       end
     end
