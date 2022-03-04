@@ -10,9 +10,7 @@ Gem::Specification.new do |spec|
   spec.files         = [
     "lib/jdvp-codetabs-commonmark.rb", 
     "assets/codeblock.css",
-    "assets/codeblock.js",
-    "assets/icon_copy.svg",
-    "assets/icon_theme.svg"
+    "assets/codeblock.js"
   ]
 
   spec.required_ruby_version = ">= 2.6.0"

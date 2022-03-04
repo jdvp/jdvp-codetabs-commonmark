@@ -160,10 +160,4 @@ Jekyll::Hooks.register :site, :post_write do |site|
   #Copy required javascript
   js = File.expand_path("../../assets/codeblock.js", __FILE__)
   FileUtils.cp(js, "#{site.in_dest_dir("assets/codeblock.js")}")
-
-  #Copy icons for copy and theme actions
-  copy_icon = File.expand_path("../../assets/icon_copy.svg", __FILE__)
-  FileUtils.cp(copy_icon, "#{site.in_dest_dir("assets/icon_copy.svg")}")
-  theme_icon = File.expand_path("../../assets/icon_theme.svg", __FILE__)
-  FileUtils.cp(theme_icon, "#{site.in_dest_dir("assets/icon_theme.svg")}")
 end
