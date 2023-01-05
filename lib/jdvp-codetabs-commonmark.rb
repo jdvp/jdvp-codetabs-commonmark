@@ -144,6 +144,18 @@ class Jekyll::Converters::Markdown
   end
 end
 
+Jekyll::Hooks.register :documents, :post_convert do |post|
+  if post.content.include? "JdvpCodeTabs-baseurl"
+    post.content = post.content.gsub("JdvpCodeTabs-baseurl", "#{post.site.baseurl}")
+  end
+end
+
+Jekyll::Hooks.register :pages, :post_convert do |post|
+  if post.content.include? "JdvpCodeTabs-baseurl"
+    post.content = post.content.gsub("JdvpCodeTabs-baseurl", "#{post.site.baseurl}")
+  end
+end
+
 Jekyll::Hooks.register :posts, :post_convert do |post|
   if post.content.include? "JdvpCodeTabs-baseurl"
     post.content = post.content.gsub("JdvpCodeTabs-baseurl", "#{post.site.baseurl}")
