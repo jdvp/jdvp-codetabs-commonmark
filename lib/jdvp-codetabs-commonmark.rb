@@ -158,7 +158,6 @@ def add_resource_links_in_html_head(site)
   end
 end
 
-
 #After the site is written, the necessary files this plugin's generateed code needs are also written
 Jekyll::Hooks.register :site, :post_write do |site|
   #Copy CSS required for code tabs
