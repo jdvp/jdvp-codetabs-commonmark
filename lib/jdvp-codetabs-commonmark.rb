@@ -140,7 +140,7 @@ def add_resource_links_in_html_head(site)
   site_directory = "#{site.in_dest_dir("/")}"
 
   # For every html file in the generated site 
-  Dir.glob("*.html", base: site_directory).each do |file_name|
+  Dir.glob("**/*.html", base: site_directory).each do |file_name|
     file_plus_path = "#{site_directory}#{file_name}"
 
     # Check if the file contains a code switcher and skip it if it does not
