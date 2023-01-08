@@ -38,7 +38,7 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
         out("<div id=\"code_copied_snackbar\">Copied!</div>")
         @added_copy_snackbar = true
       end
-      out("<button class=\"code_switcher_copy_button\" title=\"Copy\" onclick=\"copyText(\'#{individual_code_block_id}\')\"></button>")
+      out("<button class=\"code_switcher_copy_button\" title=\"Copy\" onclick=\"copyText(\'#{individual_code_block_id}\', \'#{get_code_copy_Lines(node)}\')\"></button>")
     end
     out("<button class=\"code_switcher_theme_button\" onclick=\"updateTheme(true)\"></button>")
     out("</div>")
@@ -62,7 +62,7 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
   #Splits the code fence into the language and extra info
   #Removes the codeCopyEnabled item which is just a flag used to enable showing a copy action button
   def split_lanugage_fence_info(node)
-    node&.fence_info&.sub(" codeCopyEnabled", "")&.split(/[\s,]/, 2)
+    node&.fence_info&.sub(/ codeCopyEnabled=?"?([\ \-\,0-9]*)"?/, "")&.split(/[\s,]/, 2)
   end
 
   #Gets the language used in the code fence (the part typically immediately after a triple backtick in markdown)
@@ -85,6 +85,10 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
   #Determines whether the copy action should be shown for a given code block based on info in the code fence info
   def is_copy_action_enabled(node)
     node&.fence_info&.include?("codeCopyEnabled") || false
+  end
+
+  def get_code_copy_Lines(node)
+    node&.fence_info[/ codeCopyEnabled=?"?([\ \-\,0-9]*)"?/, 1] || ""
   end
 
   #Creates the tab header portion of the code switcher

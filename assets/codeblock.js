@@ -25,8 +25,30 @@ function selectTab(codeLangClass, tabClass, tabIndex) {
     });
 };
 
-function copyText(codeBlockClass) {
+function isNumeric(str) {
+  return !isNaN(str) && !isNaN(parseFloat(str))
+}
+
+function getRange(text) {
+    if (!text?.length) {
+        return [];
+    }
+    var elements = text.split("-").map(i => parseInt(i));
+    var a = Math.min(...elements);
+    var b = Math.max(...elements);
+    return Array.from(new Array(Math.abs(a - b) + 1), (x, i) => i + Math.min(a, b));
+};
+
+function copyText(codeBlockClass, copyRange) {
+    var lines = [...new Set(copyRange.replace(/\s/g, "").split(",").flatMap(item => getRange(item)))];
+    lines.sort();
+
     var copiedText = document.getElementsByClassName(codeBlockClass)[0].innerText;
+    if (lines !== undefined && lines.length > 0) {
+        copiedText = lines.map(lineNumber => copiedText.split("\n")[lineNumber])
+            .filter(item => item?.length)
+            .join("\n")
+    }
     navigator.clipboard.writeText(copiedText);
     var snackbar = document.getElementById("code_copied_snackbar");
     snackbar.classList.add("show")
