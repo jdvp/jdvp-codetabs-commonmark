@@ -4,21 +4,7 @@ require "jekyll"
 require "securerandom"
 
 class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
-  @added_assets_links = false
   @added_copy_snackbar = false
-
-  def render(node)
-    if node.type == :document
-      if (!@added_assets_links)
-        #Add references to the fonts, css, and js required
-        out("<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>")
-        out("<link rel=\"stylesheet\" href=\"JdvpCodeTabs-baseurl/assets/codeblock.css\"/>")
-        out("<script src=\"JdvpCodeTabs-baseurl/assets/codeblock.js\"></script>")
-        @added_assets_links = true
-      end
-    end
-    super(node)
-  end
 
   def code_block(node)
     #Determine what objects this code block is surrounded by.
@@ -144,9 +130,31 @@ class Jekyll::Converters::Markdown
   end
 end
 
-Jekyll::Hooks.register :posts, :post_convert do |post|
-  if post.content.include? "JdvpCodeTabs-baseurl"
-    post.content = post.content.gsub("JdvpCodeTabs-baseurl", "#{post.site.baseurl}")
+def get_resource_string(site)
+ return "<link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto+Mono\"/>" +
+        "<link rel=\"stylesheet\" href=\"#{site.baseurl}/assets/codeblock.css\"/>" +
+        "<script src=\"#{site.baseurl}/assets/codeblock.js\"></script>"
+end
+
+def add_resource_links_in_html_head(site)
+  site_directory = "#{site.in_dest_dir("/")}"
+
+  # For every html file in the generated site 
+  Dir.glob("*.html", base: site_directory).each do |file_name|
+    file_plus_path = "#{site_directory}#{file_name}"
+
+    # Check if the file contains a code switcher and skip it if it does not
+    if (!File.foreach(file_plus_path).grep(/code_switcher_container_parent/).any?)
+      next
+    end
+
+    # If the file has a code switcher and a head element, add the resource links to the end of the head element
+    if (File.foreach(file_plus_path).grep(/<\/head>/).any?)
+      File.write(file_plus_path, File.open(file_plus_path, &:read).sub("</head>","#{get_resource_string(site)}</head>"))
+    # Otherwise if it has a html element add a head element with the resource links
+    elsif (File.foreach(file_plus_path).grep(/<\/html>/).any?)
+      File.write(file_plus_path, File.open(file_plus_path, &:read).sub(/(<html.*>)/,"#{$1}<head>#{get_resource_string(site)}</head>"))
+    end
   end
 end
 
@@ -166,4 +174,7 @@ Jekyll::Hooks.register :site, :post_write do |site|
   FileUtils.cp(copy_icon, "#{site.in_dest_dir("assets/icon_copy.svg")}")
   theme_icon = File.expand_path("../../assets/icon_theme.svg", __FILE__)
   FileUtils.cp(theme_icon, "#{site.in_dest_dir("assets/icon_theme.svg")}")
+
+  #Add CSS & JS references to files that use code tabs
+  add_resource_links_in_html_head(site)
 end
