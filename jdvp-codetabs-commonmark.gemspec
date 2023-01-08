@@ -1,7 +1,7 @@
 Gem::Specification.new do |spec|
   spec.name          = "jdvp-codetabs-commonmark"
   spec.summary       = "CommonMark generator for Jekyll that adds tabbed code functionality"
-  spec.version       = "0.1.4"
+  spec.version       = "1.0.0"
   spec.authors       = ["JD Porterfield"]
   spec.email         = "jd.porterfield@alumni.rice.edu"
   spec.homepage      = "https://github.com/jdvp/jdvp-codetabs-commonmark"
