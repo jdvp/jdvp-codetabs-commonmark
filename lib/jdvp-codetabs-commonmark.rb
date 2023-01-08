@@ -19,6 +19,13 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
     #Get a unique ID per code block in order to allow code copying
     individual_code_block_id = SecureRandom.uuid
 
+    if (is_copy_action_enabled(node))
+      if (!@added_copy_snackbar)
+        out("<div id=\"code_copied_snackbar\">Copied!</div>")
+        @added_copy_snackbar = true
+      end
+    end
+
     #Create a header if necessary and then creates the wrapper for each item
     #This allows tabs to be selected individaully
     if (is_header_item)
@@ -34,10 +41,6 @@ class CodeTabsCustomerRenderer < JekyllCommonMarkCustomRenderer
     #Changing theme button is added to all code blocks, but the copy button is configurable.
     out("<div class=\"code_switcher_code_action_container\">")
     if (is_copy_action_enabled(node))
-      if (!@added_copy_snackbar)
-        out("<div id=\"code_copied_snackbar\">Copied!</div>")
-        @added_copy_snackbar = true
-      end
       out("<button class=\"code_switcher_copy_button\" title=\"Copy\" onclick=\"copyText(\'#{individual_code_block_id}\', \'#{get_code_copy_Lines(node)}\')\"></button>")
     end
     out("<button class=\"code_switcher_theme_button\" onclick=\"updateTheme(true)\"></button>")
